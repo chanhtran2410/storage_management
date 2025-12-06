@@ -1,0 +1,56 @@
+.inventory-container {
+    padding: 24px;
+
+    @media (max-width: 576px) {
+        padding: 16px;
+    }
+
+    .page-header {
+        margin-bottom: 24px;
+
+        @media (max-width: 576px) {
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #262626;
+
+            @media (max-width: 576px) {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .filters-section {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 12px;
+
+            .ant-input-search,
+            .ant-select {
+                width: 100% !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            margin-bottom: 16px;
+        }
+    }
+
+    // Responsive table
+    @media (max-width: 768px) {
+        .ant-table {
+            font-size: 12px;
+        }
+
+        .ant-table-thead > tr > th,
+        .ant-table-tbody > tr > td {
+            padding: 8px 4px;
+        }
+    }
+}

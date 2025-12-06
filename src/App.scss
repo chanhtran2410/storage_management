@@ -1,0 +1,40 @@
+.app-layout {
+    min-height: 100vh;
+
+    .app-content {
+        background: #f0f2f5;
+        min-height: calc(100vh - 64px);
+        overflow-y: auto;
+        padding: 0;
+
+        // Add responsive padding for content
+        > div {
+            @media (max-width: 576px) {
+                padding: 16px !important;
+            }
+
+            @media (min-width: 577px) and (max-width: 768px) {
+                padding: 20px !important;
+            }
+        }
+    }
+
+    // Mobile overlay container
+    .sidebar-overlay {
+        display: none;
+
+        @media (max-width: 767px) {
+            &.active {
+                display: block;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.45);
+                z-index: 1000;
+                cursor: pointer;
+            }
+        }
+    }
+}

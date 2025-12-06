@@ -1,0 +1,46 @@
+.unit-sets-container {
+    padding: 24px;
+
+    @media (max-width: 576px) {
+        padding: 16px;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        @media (max-width: 576px) {
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #262626;
+
+            @media (max-width: 576px) {
+                font-size: 18px;
+            }
+        }
+    }
+
+    // Responsive table
+    @media (max-width: 768px) {
+        .ant-table {
+            font-size: 12px;
+        }
+
+        .ant-table-thead > tr > th,
+        .ant-table-tbody > tr > td {
+            padding: 8px 4px;
+        }
+
+        .ant-btn-link {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+    }
+}

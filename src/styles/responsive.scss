@@ -1,0 +1,135 @@
+// Global responsive utilities
+@mixin mobile {
+    @media (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 577px) and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 992px) {
+        @content;
+    }
+}
+
+// Common page container styles
+.page-container {
+    padding: 24px;
+
+    @include mobile {
+        padding: 16px;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        @include mobile {
+            margin-bottom: 16px;
+
+            h2 {
+                font-size: 18px !important;
+            }
+        }
+
+        h2 {
+            margin: 0;
+            color: #262626;
+        }
+    }
+
+    // Responsive tables
+    .ant-table-wrapper {
+        @include mobile {
+            .ant-table {
+                font-size: 12px;
+            }
+
+            .ant-table-thead > tr > th {
+                padding: 8px;
+            }
+
+            .ant-table-tbody > tr > td {
+                padding: 8px;
+            }
+        }
+    }
+
+    // Responsive forms
+    .ant-form {
+        @include mobile {
+            .ant-form-item-label {
+                padding-bottom: 4px;
+            }
+        }
+    }
+
+    // Responsive cards
+    .ant-card {
+        @include mobile {
+            .ant-card-body {
+                padding: 12px;
+            }
+        }
+    }
+
+    // Responsive buttons in action columns
+    .ant-space {
+        @include mobile {
+            .ant-btn-link {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+    }
+
+    // Responsive search and filters
+    .filters-section {
+        @include mobile {
+            flex-direction: column;
+
+            .ant-input-search,
+            .ant-select {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+// Responsive modal adjustments
+.ant-modal {
+    @include mobile {
+        max-width: calc(100vw - 32px) !important;
+        margin: 16px auto;
+
+        .ant-modal-body {
+            padding: 16px;
+        }
+
+        .ant-form-item {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+// Responsive statistics cards
+.ant-statistic {
+    @include mobile {
+        .ant-statistic-title {
+            font-size: 12px;
+        }
+
+        .ant-statistic-content {
+            font-size: 18px;
+        }
+    }
+}

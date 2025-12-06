@@ -1,0 +1,76 @@
+.app-sidebar {
+    background: #fff;
+    height: calc(100vh - 64px);
+    position: sticky;
+    top: 64px;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+
+    // Mobile: drawer style
+    @media (max-width: 767px) {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        z-index: 1001;
+        height: calc(100vh - 64px);
+
+        &.ant-layout-sider-collapsed {
+            left: -240px;
+        }
+    }
+
+    // Tablet and Desktop
+    @media (min-width: 768px) {
+        &.ant-layout-sider-collapsed {
+            .ant-menu-item {
+                padding-inline: calc(50% - 16px);
+            }
+        }
+    }
+
+    .ant-menu {
+        border-right: none;
+        padding: 16px 0;
+        height: 100%;
+
+        .ant-menu-item {
+            margin: 4px 8px;
+            border-radius: 4px;
+            height: 48px;
+            line-height: 48px;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: #e6f7ff;
+            }
+
+            &.ant-menu-item-selected {
+                background-color: #1890ff;
+                color: #fff;
+
+                .anticon {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+
+        &:hover {
+            background: #555;
+        }
+    }
+}
