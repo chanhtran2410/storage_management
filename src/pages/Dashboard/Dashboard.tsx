@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Row, Col, Statistic, Table } from 'antd';
+import { Card, Row, Col, Statistic, Table, Image } from 'antd';
 import {
     InboxOutlined,
     ShoppingOutlined,
@@ -33,6 +33,12 @@ const Dashboard: React.FC = () => {
             title: 'SKU',
             dataIndex: 'sku',
             key: 'sku',
+            width: 100,
+        },
+        {
+            title: 'Product Name',
+            dataIndex: 'productName',
+            key: 'productName',
         },
         {
             title: 'Action',
@@ -45,9 +51,41 @@ const Dashboard: React.FC = () => {
             ),
         },
         {
-            title: 'Qty',
+            title: 'Quantity (base unit)',
             dataIndex: 'quantity',
             key: 'quantity',
+        },
+        {
+            title: 'Display Quantity',
+            dataIndex: 'quantity',
+            key: 'displayQuantity',
+            render: (quantity: number, record: RecentActivity) => {
+                const itemData = dataService.getItemBySku(record.sku);
+                if (!itemData) return quantity;
+                return (
+                    <span style={{ fontWeight: 500, color: '#1890ff' }}>
+                        {dataService.formatQuantityByItemId(quantity, itemData.id)}
+                    </span>
+                );
+            },
+        },
+        {
+            title: 'Captured',
+            dataIndex: 'thumbnail',
+            key: 'thumbnail',
+            width: 100,
+            render: (thumbnail: string) => (
+                thumbnail ? (
+                    <Image
+                        src={thumbnail}
+                        alt="Camera capture"
+                        width={60}
+                        height={60}
+                        style={{ objectFit: 'cover', borderRadius: 4 }}
+                        placeholder={true}
+                    />
+                ) : "--"
+            ),
         },
         {
             title: 'Source',

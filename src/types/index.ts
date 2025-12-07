@@ -99,8 +99,10 @@ export interface DashboardStats {
 export interface RecentActivity {
     id: string;
     sku: string;
+    productName: string;
     action: string;
     quantity: number;
     source: TransactionSource;
     time: Date;
+    thumbnail?: string;
 }

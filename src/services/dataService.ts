@@ -617,17 +617,22 @@ class DataService {
             .sort((a, b) => b.date.getTime() - a.date.getTime())
             .slice(0, limit)
             .flatMap((t) =>
-                t.items.map((item) => ({
-                    id: `${t.id}-${item.itemId}`,
-                    sku: item.sku,
-                    action:
-                        t.type === TransactionType.INBOUND
-                            ? 'Inbound'
-                            : 'Outbound',
-                    quantity: item.convertedQuantity,
-                    source: t.source,
-                    time: t.date,
-                }))
+                t.items.map((item) => {
+                    const itemData = this.getItemById(item.itemId);
+                    return {
+                        id: `${t.id}-${item.itemId}`,
+                        sku: item.sku,
+                        productName: itemData?.name || 'Unknown',
+                        action:
+                            t.type === TransactionType.INBOUND
+                                ? 'Inbound'
+                                : 'Outbound',
+                        quantity: item.convertedQuantity,
+                        source: t.source,
+                        time: t.date,
+                        thumbnail: t.thumbnail,
+                    };
+                })
             );
     }
 }
