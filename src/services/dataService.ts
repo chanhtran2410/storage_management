@@ -88,6 +88,196 @@ class DataService {
         // Initialize inventory
         this.inventory.set('item1', 120); // equals 5 cases (24 units/case)
         this.inventory.set('item2', 48); // equals 2 cases
+
+        // Initialize sample transactions (Inbound)
+        this.transactions = [
+            {
+                id: 'txn1',
+                type: TransactionType.INBOUND,
+                date: new Date('2025-12-01T10:30:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u2',
+                        quantity: 3,
+                        convertedQuantity: 72, // 3 cases * 24 bottles
+                    },
+                ],
+                notes: 'Initial stock delivery',
+                totalQuantity: 72,
+                createdAt: new Date('2025-12-01T10:30:00'),
+                updatedAt: new Date('2025-12-01T10:30:00'),
+            },
+            {
+                id: 'txn2',
+                type: TransactionType.INBOUND,
+                date: new Date('2025-12-02T14:15:00'),
+                source: TransactionSource.CAMERA,
+                items: [
+                    {
+                        itemId: 'item2',
+                        sku: 'SKU002',
+                        unitId: 'u2',
+                        quantity: 2,
+                        convertedQuantity: 48, // 2 cases * 24 bottles
+                    },
+                ],
+                notes: 'Detected by camera system',
+                totalQuantity: 48,
+                createdAt: new Date('2025-12-02T14:15:00'),
+                updatedAt: new Date('2025-12-02T14:15:00'),
+            },
+            {
+                id: 'txn3',
+                type: TransactionType.INBOUND,
+                date: new Date('2025-12-03T09:00:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u1',
+                        quantity: 48,
+                        convertedQuantity: 48, // 48 bottles
+                    },
+                    {
+                        itemId: 'item2',
+                        sku: 'SKU002',
+                        unitId: 'u1',
+                        quantity: 24,
+                        convertedQuantity: 24, // 24 bottles
+                    },
+                ],
+                notes: 'Mixed bottle restock',
+                totalQuantity: 72,
+                createdAt: new Date('2025-12-03T09:00:00'),
+                updatedAt: new Date('2025-12-03T09:00:00'),
+            },
+            {
+                id: 'txn4',
+                type: TransactionType.INBOUND,
+                date: new Date('2025-12-05T11:20:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u2',
+                        quantity: 1,
+                        convertedQuantity: 24, // 1 case * 24 bottles
+                    },
+                ],
+                notes: 'Additional supply',
+                totalQuantity: 24,
+                createdAt: new Date('2025-12-05T11:20:00'),
+                updatedAt: new Date('2025-12-05T11:20:00'),
+            },
+            // Outbound transactions
+            {
+                id: 'txn5',
+                type: TransactionType.OUTBOUND,
+                date: new Date('2025-12-02T16:00:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u1',
+                        quantity: 12,
+                        convertedQuantity: 12, // 12 bottles
+                    },
+                ],
+                notes: 'Customer order #1001',
+                totalQuantity: 12,
+                createdAt: new Date('2025-12-02T16:00:00'),
+                updatedAt: new Date('2025-12-02T16:00:00'),
+            },
+            {
+                id: 'txn6',
+                type: TransactionType.OUTBOUND,
+                date: new Date('2025-12-03T13:30:00'),
+                source: TransactionSource.CAMERA,
+                items: [
+                    {
+                        itemId: 'item2',
+                        sku: 'SKU002',
+                        unitId: 'u1',
+                        quantity: 18,
+                        convertedQuantity: 18, // 18 bottles
+                    },
+                ],
+                notes: 'Detected by camera - vending machine',
+                totalQuantity: 18,
+                createdAt: new Date('2025-12-03T13:30:00'),
+                updatedAt: new Date('2025-12-03T13:30:00'),
+            },
+            {
+                id: 'txn7',
+                type: TransactionType.OUTBOUND,
+                date: new Date('2025-12-04T10:45:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u2',
+                        quantity: 1,
+                        convertedQuantity: 24, // 1 case * 24 bottles
+                    },
+                    {
+                        itemId: 'item2',
+                        sku: 'SKU002',
+                        unitId: 'u1',
+                        quantity: 6,
+                        convertedQuantity: 6, // 6 bottles
+                    },
+                ],
+                notes: 'Bulk order for event',
+                totalQuantity: 30,
+                createdAt: new Date('2025-12-04T10:45:00'),
+                updatedAt: new Date('2025-12-04T10:45:00'),
+            },
+            {
+                id: 'txn8',
+                type: TransactionType.OUTBOUND,
+                date: new Date('2025-12-06T15:00:00'),
+                source: TransactionSource.USER,
+                items: [
+                    {
+                        itemId: 'item1',
+                        sku: 'SKU001',
+                        unitId: 'u1',
+                        quantity: 36,
+                        convertedQuantity: 36, // 36 bottles
+                    },
+                ],
+                notes: 'Regular distribution',
+                totalQuantity: 36,
+                createdAt: new Date('2025-12-06T15:00:00'),
+                updatedAt: new Date('2025-12-06T15:00:00'),
+            },
+            {
+                id: 'txn9',
+                type: TransactionType.OUTBOUND,
+                date: new Date('2025-12-07T09:15:00'),
+                source: TransactionSource.CAMERA,
+                items: [
+                    {
+                        itemId: 'item2',
+                        sku: 'SKU002',
+                        unitId: 'u1',
+                        quantity: 12,
+                        convertedQuantity: 12, // 12 bottles
+                    },
+                ],
+                notes: 'Auto-detected removal',
+                totalQuantity: 12,
+                createdAt: new Date('2025-12-07T09:15:00'),
+                updatedAt: new Date('2025-12-07T09:15:00'),
+            },
+        ];
     }
 
     // Unit Sets
@@ -343,6 +533,14 @@ class DataService {
         return parts.length > 0
             ? parts.join(' ')
             : `0 ${sortedUnits[sortedUnits.length - 1].unitName}`;
+    }
+
+    // Public method to format quantity by item ID
+    formatQuantityByItemId(quantity: number, itemId: string): string {
+        const item = this.getItemById(itemId);
+        if (!item) return `${quantity}`;
+        const unitSet = this.getUnitSetById(item.unitSetId);
+        return this.formatMultiLevelQuantity(quantity, unitSet);
     }
 
     // AI Events

@@ -132,9 +132,23 @@ const Inbound: React.FC = () => {
             render: (date: Date) => new Date(date).toLocaleString('vi-VN'),
         },
         {
-            title: 'Total Quantity',
+            title: 'Total Quantity (base unit)',
             dataIndex: 'totalQuantity',
             key: 'totalQuantity',
+        },
+        {
+            title: 'Display Quantity',
+            dataIndex: 'totalQuantity',
+            key: 'displayQuantity',
+            render: (_: any, record: Transaction) => {
+                if (record.items.length === 0) return '-';
+                const firstItem = record.items[0];
+                return (
+                    <span>
+                        {dataService.formatQuantityByItemId(record.totalQuantity, firstItem.itemId)}
+                    </span>
+                );
+            },
         },
         {
             title: 'Source',
@@ -194,9 +208,19 @@ const Inbound: React.FC = () => {
             key: 'quantity',
         },
         {
-            title: 'Converted Qty',
+            title: 'Converted Qty (base unit)',
             dataIndex: 'convertedQuantity',
             key: 'convertedQuantity',
+        },
+        {
+            title: 'Display Quantity',
+            dataIndex: 'convertedQuantity',
+            key: 'displayQuantity',
+            render: (convertedQuantity: number, record: any) => (
+                <span style={{ fontWeight: 500, color: '#1890ff' }}>
+                    {dataService.formatQuantityByItemId(convertedQuantity, record.itemId)}
+                </span>
+            ),
         },
     ];
 

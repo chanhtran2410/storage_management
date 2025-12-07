@@ -56,7 +56,7 @@ const Inventory: React.FC = () => {
         },
         {
             title: 'Product Name',
-            dataIndex: 'name',
+            dataIndex: 'itemName',
             key: 'itemName',
         },
         {
@@ -64,27 +64,27 @@ const Inventory: React.FC = () => {
             dataIndex: 'quantity',
             key: 'quantity',
             width: 180,
-            render: (quantity: number) => (
-                <span style={{ fontWeight: 600, color: quantity > 0 ? '#52c41a' : '#ff4d4f' }}>
-                    {quantity}
-                </span>
-            ),
+            // render: (quantity: number) => (
+            //     <span style={{ fontWeight: 600, color: quantity > 0 ? '#52c41a' : '#ff4d4f' }}>
+            //         {quantity}
+            //     </span>
+            // ),
         },
         {
-            title: 'Multi-level Display',
+            title: 'Display Quantity',
             dataIndex: 'displayQuantity',
             key: 'displayQuantity',
             width: 200,
-            render: (text: string, record: InventoryItem) => (
-                <span
-                    style={{
-                        fontWeight: 500,
-                        color: record.quantity > 0 ? '#1890ff' : '#8c8c8c',
-                    }}
-                >
-                    {text}
-                </span>
-            ),
+            // render: (text: string, record: InventoryItem) => (
+            //     <span
+            //         style={{
+            //             fontWeight: 500,
+            //             color: record.quantity > 0 ? '#1890ff' : '#8c8c8c',
+            //         }}
+            //     >
+            //         {text}
+            //     </span>
+            // ),
         },
     ];
 

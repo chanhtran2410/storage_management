@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     DashboardOutlined,
     InboxOutlined,
@@ -14,54 +15,61 @@ import './Sidebar.scss';
 const { Sider } = Layout;
 
 interface SidebarProps {
-    selectedKey: string;
-    onMenuSelect: (key: string) => void;
     collapsed: boolean;
     onCollapse: (collapsed: boolean) => void;
+    onMenuSelect?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ selectedKey, onMenuSelect, collapsed, onCollapse }) => {
+const Sidebar: React.FC<SidebarProps> = ({ collapsed, onCollapse, onMenuSelect }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const menuItems = [
         {
-            key: 'dashboard',
+            key: '/dashboard',
             icon: <DashboardOutlined />,
             label: 'Dashboard',
         },
         {
-            key: 'items',
+            key: '/items',
             icon: <InboxOutlined />,
             label: 'Items',
         },
         {
-            key: 'unit-sets',
+            key: '/unit-sets',
             icon: <AppstoreOutlined />,
             label: 'Unit Sets',
         },
         {
-            key: 'inbound',
+            key: '/inbound',
             icon: <LoginOutlined />,
             label: 'Inbound',
         },
         {
-            key: 'outbound',
+            key: '/outbound',
             icon: <LogoutOutlined />,
             label: 'Outbound',
         },
         {
-            key: 'inventory',
+            key: '/inventory',
             icon: <BarcodeOutlined />,
             label: 'Inventory',
         },
-        {
-            key: 'ai-events',
-            icon: <CameraOutlined />,
-            label: 'AI Events Log',
-        },
+        // {
+        //     key: '/ai-events',
+        //     icon: <CameraOutlined />,
+        //     label: 'AI Events Log',
+        // },
     ];
+
+    const handleMenuClick = ({ key }: { key: string }) => {
+        navigate(key);
+        onMenuSelect?.();
+    };
 
     return (
         <Sider
-            width={240}
+            width={300}
             className="app-sidebar"
             collapsible
             collapsed={collapsed}
@@ -72,9 +80,9 @@ const Sidebar: React.FC<SidebarProps> = ({ selectedKey, onMenuSelect, collapsed,
         >
             <Menu
                 mode="inline"
-                selectedKeys={[selectedKey]}
+                selectedKeys={[location.pathname]}
                 items={menuItems}
-                onClick={({ key }) => onMenuSelect(key)}
+                onClick={handleMenuClick}
                 inlineCollapsed={collapsed}
             />
         </Sider>
