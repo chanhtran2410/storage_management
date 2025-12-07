@@ -10,13 +10,12 @@ import {
     message,
     Tag,
     Popconfirm,
+    Flex,
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import { dataService } from '../../services/dataService';
 import { Item, ItemStatus } from '../../types';
 import './Items.scss';
-
-const { Search } = Input;
 
 const Items: React.FC = () => {
     const [items, setItems] = useState<Item[]>([]);
@@ -159,18 +158,16 @@ const Items: React.FC = () => {
         <div className="items-container">
             <div className="page-header">
                 <h2>Items Management</h2>
-                <Space>
-                    <Search
+                <Flex gap={16} justify='space-between' style={{ width: '100%' }}>
+                    <Input
                         placeholder="Search by SKU or name"
-                        onSearch={handleSearch}
                         onChange={(e) => handleSearch(e.target.value)}
-                        style={{ width: 300 }}
                         prefix={<SearchOutlined />}
                     />
                     <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>
                         Create Item
                     </Button>
-                </Space>
+                </Flex>
             </div>
 
             <Table

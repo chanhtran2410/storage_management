@@ -6,12 +6,7 @@
     }
 
     .page-header {
-        margin-bottom: 24px;
-
-        @media (max-width: 576px) {
-            margin-bottom: 16px;
-        }
-
+        margin: 0;
         h2 {
             margin: 0;
             color: #262626;

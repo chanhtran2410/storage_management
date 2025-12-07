@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Select } from 'antd';
+import { Table, Input, Select, Flex, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { dataService } from '../../services/dataService';
 import { InventoryItem } from '../../types';
@@ -91,17 +91,14 @@ const Inventory: React.FC = () => {
     const unitSets = dataService.getUnitSets();
 
     return (
-        <div className="inventory-container">
+        <Flex vertical gap={24} className="inventory-container">
             <div className="page-header">
                 <h2>Realtime Inventory</h2>
             </div>
-
-            <div className="filters-section">
-                <Search
-                    placeholder="Search by SKU or product name"
-                    onSearch={handleSearch}
+            <Flex gap={16} justify='space-between' style={{ width: '100%' }}>
+                <Input
+                    placeholder="Search by SKU or name"
                     onChange={(e) => handleSearch(e.target.value)}
-                    style={{ width: 300 }}
                     prefix={<SearchOutlined />}
                 />
                 <Select
@@ -117,7 +114,7 @@ const Inventory: React.FC = () => {
                         </Select.Option>
                     ))}
                 </Select>
-            </div>
+            </Flex>
 
             <Table
                 columns={columns}
@@ -125,7 +122,7 @@ const Inventory: React.FC = () => {
                 rowKey="itemId"
                 pagination={{ pageSize: 20 }}
             />
-        </div>
+        </Flex>
     );
 };
 
