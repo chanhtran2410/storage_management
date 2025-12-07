@@ -52,6 +52,7 @@ const Inventory: React.FC = () => {
             dataIndex: 'sku',
             key: 'sku',
             width: 150,
+            fixed: 'left' as const,
         },
         {
             title: 'Product Name',
@@ -120,6 +121,7 @@ const Inventory: React.FC = () => {
                 dataSource={filteredInventory}
                 rowKey="itemId"
                 pagination={{ pageSize: 20 }}
+                scroll={{ x: 'max-content' }}
             />
         </Flex>
     );

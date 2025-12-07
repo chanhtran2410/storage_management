@@ -11,6 +11,7 @@ import {
     Tag,
     Popconfirm,
     Flex,
+    Image,
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import { dataService } from '../../services/dataService';
@@ -102,11 +103,30 @@ const Items: React.FC = () => {
             dataIndex: 'sku',
             key: 'sku',
             width: 150,
+            fixed: 'left' as const,
         },
         {
             title: 'Product Name',
             dataIndex: 'name',
             key: 'name',
+        },
+        {
+            title: 'Thumbnail',
+            dataIndex: 'thumbnail',
+            key: 'thumbnail',
+            width: 100,
+            render: (thumbnail: string) => (
+                thumbnail ? (
+                    <Image
+                        src={thumbnail}
+                        alt="Item thumbnail"
+                        width={60}
+                        height={60}
+                        style={{ objectFit: 'cover', borderRadius: 4 }}
+                        placeholder={true}
+                    />
+                ) : "--"
+            ),
         },
         {
             title: 'Unit Set',
@@ -129,6 +149,7 @@ const Items: React.FC = () => {
             title: 'Actions',
             key: 'actions',
             width: 150,
+            fixed: 'right' as const,
             render: (_: any, record: Item) => (
                 <Space>
                     <Button
@@ -175,6 +196,7 @@ const Items: React.FC = () => {
                 dataSource={filteredItems}
                 rowKey="id"
                 pagination={{ pageSize: 10 }}
+                scroll={{ x: 'max-content' }}
             />
 
             <Modal

@@ -119,6 +119,7 @@ const UnitSets: React.FC = () => {
             title: 'Unit Set Name',
             dataIndex: 'name',
             key: 'name',
+            fixed: "left" as const
         },
         {
             title: 'Number of Units',
@@ -136,6 +137,7 @@ const UnitSets: React.FC = () => {
             title: 'Actions',
             key: 'actions',
             width: 200,
+            fixed: 'right' as const,
             render: (_: any, record: UnitSet) => (
                 <Space>
                     <Button type="link" icon={<EyeOutlined />} onClick={() => handleView(record)}>
@@ -188,7 +190,7 @@ const UnitSets: React.FC = () => {
                 </Button>
             </div>
 
-            <Table columns={columns} dataSource={unitSets} rowKey="id" pagination={{ pageSize: 10 }} />
+            <Table columns={columns} dataSource={unitSets} rowKey="id" pagination={{ pageSize: 10 }} scroll={{ x: 'max-content' }} />
 
             {/* Create/Edit Modal */}
             <Modal

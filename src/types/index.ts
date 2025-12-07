@@ -44,6 +44,7 @@ export interface Item {
     unitSetId: string;
     description?: string;
     status: ItemStatus;
+    thumbnail?: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -63,6 +64,7 @@ export interface Transaction {
     source: TransactionSource;
     items: TransactionItem[];
     notes?: string;
+    thumbnail?: string;
     totalQuantity: number;
     createdAt: Date;
     updatedAt: Date;

@@ -22,6 +22,7 @@ const AIEvents: React.FC = () => {
             dataIndex: 'sku',
             key: 'sku',
             width: 120,
+            fixed: 'left' as const,
         },
         {
             title: 'Action',
@@ -111,6 +112,7 @@ const AIEvents: React.FC = () => {
                 dataSource={events}
                 rowKey="id"
                 pagination={{ pageSize: 20 }}
+                scroll={{ x: 'max-content' }}
             />
         </div>
     );

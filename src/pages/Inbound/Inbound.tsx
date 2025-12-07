@@ -13,6 +13,7 @@ import {
     InputNumber,
     DatePicker,
     Card,
+    Image,
 } from 'antd';
 import {
     PlusOutlined,
@@ -124,6 +125,7 @@ const Inbound: React.FC = () => {
             dataIndex: 'id',
             key: 'id',
             width: 120,
+            fixed: 'left' as const,
         },
         {
             title: 'Inbound Date',
@@ -159,9 +161,28 @@ const Inbound: React.FC = () => {
             ),
         },
         {
+            title: 'Captured',
+            dataIndex: 'captured',
+            key: 'captured',
+            width: 100,
+            render: (thumbnail: string) => (
+                thumbnail ? (
+                    <Image
+                        src={thumbnail}
+                        alt="Camera capture"
+                        width={60}
+                        height={60}
+                        style={{ objectFit: 'cover', borderRadius: 4 }}
+                        placeholder={true}
+                    />
+                ) : "--"
+            ),
+        },
+        {
             title: 'Actions',
             key: 'actions',
             width: 200,
+            fixed: 'right' as const,
             render: (_: any, record: Transaction) => (
                 <Space>
                     <Button type="link" icon={<EyeOutlined />} onClick={() => handleView(record)}>
@@ -240,6 +261,7 @@ const Inbound: React.FC = () => {
                 dataSource={transactions}
                 rowKey="id"
                 pagination={{ pageSize: 10 }}
+                scroll={{ x: 'max-content' }}
             />
 
             {/* Create Modal */}
