@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Select, Flex, Button } from 'antd';
+import { Table, Input, Select, Flex } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { dataService } from '../../services/dataService';
 import { InventoryItem } from '../../types';
 import './Inventory.scss';
 
-const { Search } = Input;
 
 const Inventory: React.FC = () => {
     const [inventory, setInventory] = useState<InventoryItem[]>([]);
