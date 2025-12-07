@@ -9,7 +9,7 @@ import UnitSets from '../pages/UnitSets/UnitSets';
 import Inbound from '../pages/Inbound/Inbound';
 import Outbound from '../pages/Outbound/Outbound';
 import Inventory from '../pages/Inventory/Inventory';
-import AIEvents from '../pages/AIEvents/AIEvents';
+// import AIEvents from '../pages/AIEvents/AIEvents';
 
 const { Content } = Layout;
 

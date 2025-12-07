@@ -8,7 +8,7 @@ import {
     LoginOutlined,
     LogoutOutlined,
     BarcodeOutlined,
-    CameraOutlined,
+    // CameraOutlined,
 } from '@ant-design/icons';
 import './Sidebar.scss';
 
