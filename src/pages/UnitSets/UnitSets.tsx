@@ -136,15 +136,13 @@ const UnitSets: React.FC = () => {
         {
             title: 'Actions',
             key: 'actions',
-            width: 200,
+            width: 'fit-content',
             fixed: 'right' as const,
             render: (_: any, record: UnitSet) => (
                 <Space>
                     <Button type="link" icon={<EyeOutlined />} onClick={() => handleView(record)}>
-                        View
                     </Button>
                     <Button type="link" icon={<EditOutlined />} onClick={() => handleEdit(record)}>
-                        Edit
                     </Button>
                     <Popconfirm
                         title="Confirm Delete?"
@@ -154,7 +152,6 @@ const UnitSets: React.FC = () => {
                         cancelText="Cancel"
                     >
                         <Button type="link" danger icon={<DeleteOutlined />}>
-                            Delete
                         </Button>
                     </Popconfirm>
                 </Space>

@@ -64,4 +64,24 @@
             padding: 8px;
         }
     }
+
+    // Fix only action column on mobile
+    @media (max-width: 576px) {
+        .responsive-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .ant-table-thead > tr > th,
+        .ant-table-tbody > tr > td {
+            white-space: nowrap;
+        }
+        .ant-table-thead > tr > th:last-child,
+        .ant-table-tbody > tr > td:last-child {
+            position: sticky;
+            right: 0;
+            background: #fff;
+            z-index: 2;
+            box-shadow: -2px 0 8px -4px rgba(0,0,0,0.08);
+        }
+    }
 }

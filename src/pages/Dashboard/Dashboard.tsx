@@ -28,22 +28,28 @@ const Dashboard: React.FC = () => {
         setRecentActivities(dataService.getRecentActivities(10));
     };
 
+    // Ant Design Table Breakpoint values: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
     const columns = [
         {
             title: 'SKU',
             dataIndex: 'sku',
             key: 'sku',
             width: 100,
+            responsive: ['md' as const],
         },
         {
             title: 'Product Name',
             dataIndex: 'productName',
             key: 'productName',
+            responsive: ['sm' as const],
         },
         {
             title: 'Action',
             dataIndex: 'action',
             key: 'action',
+            // Only fix on mobile, but type must be 'right' | 'left' | undefined
+            fixed: (window.innerWidth <= 576 ? 'right' : undefined) as 'right' | undefined,
+            width: 100,
             render: (text: string) => (
                 <span className={text === 'Inbound' ? 'action-inbound' : 'action-outbound'}>
                     {text}
@@ -54,11 +60,13 @@ const Dashboard: React.FC = () => {
             title: 'Quantity (base unit)',
             dataIndex: 'quantity',
             key: 'quantity',
+            responsive: ['md' as const],
         },
         {
             title: 'Display Quantity',
             dataIndex: 'quantity',
             key: 'displayQuantity',
+            responsive: ['md' as const],
             render: (quantity: number, record: RecentActivity) => {
                 const itemData = dataService.getItemBySku(record.sku);
                 if (!itemData) return quantity;
@@ -74,6 +82,7 @@ const Dashboard: React.FC = () => {
             dataIndex: 'thumbnail',
             key: 'thumbnail',
             width: 100,
+            responsive: ['lg' as const],
             render: (thumbnail: string) => (
                 thumbnail ? (
                     <Image
@@ -91,6 +100,7 @@ const Dashboard: React.FC = () => {
             title: 'Source',
             dataIndex: 'source',
             key: 'source',
+            responsive: ['md' as const],
             render: (text: string) => (
                 <span className={`source-${text.toLowerCase()}`}>{text}</span>
             ),
@@ -99,6 +109,7 @@ const Dashboard: React.FC = () => {
             title: 'Time',
             dataIndex: 'time',
             key: 'time',
+            responsive: ['md' as const],
             render: (time: Date) => new Date(time).toLocaleString('vi-VN'),
         },
     ];
@@ -151,12 +162,15 @@ const Dashboard: React.FC = () => {
             </Row>
 
             <Card title="Recent Activities" className="recent-activity-card">
-                <Table
-                    columns={columns}
-                    dataSource={recentActivities}
-                    rowKey="id"
-                    pagination={{ pageSize: 10 }}
-                />
+                <div className="responsive-table-wrapper">
+                    <Table
+                        columns={columns}
+                        dataSource={recentActivities}
+                        rowKey="id"
+                        pagination={{ pageSize: 10 }}
+                        scroll={window.innerWidth <= 576 ? { x: 'max-content' } : undefined}
+                    />
+                </div>
             </Card>
         </div>
     );

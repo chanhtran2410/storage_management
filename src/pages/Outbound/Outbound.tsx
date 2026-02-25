@@ -187,12 +187,11 @@ const Outbound: React.FC = () => {
         {
             title: 'Actions',
             key: 'actions',
-            width: 200,
+            width: 'fit-content',
             fixed: 'right' as const,
             render: (_: any, record: Transaction) => (
                 <Space>
                     <Button type="link" icon={<EyeOutlined />} onClick={() => handleView(record)}>
-                        View
                     </Button>
                     {record.source === TransactionSource.USER && (
                         <Popconfirm
@@ -203,7 +202,6 @@ const Outbound: React.FC = () => {
                             cancelText="Cancel"
                         >
                             <Button type="link" danger icon={<DeleteOutlined />}>
-                                Delete
                             </Button>
                         </Popconfirm>
                     )}

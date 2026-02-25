@@ -148,7 +148,7 @@ const Items: React.FC = () => {
         {
             title: 'Actions',
             key: 'actions',
-            width: 150,
+            width: 'fit-content',
             fixed: 'right' as const,
             render: (_: any, record: Item) => (
                 <Space>
@@ -157,7 +157,6 @@ const Items: React.FC = () => {
                         icon={<EditOutlined />}
                         onClick={() => handleEdit(record)}
                     >
-                        Edit
                     </Button>
                     <Popconfirm
                         title="Confirm Delete?"
@@ -167,7 +166,6 @@ const Items: React.FC = () => {
                         cancelText="Cancel"
                     >
                         <Button type="link" danger icon={<DeleteOutlined />}>
-                            Delete
                         </Button>
                     </Popconfirm>
                 </Space>
